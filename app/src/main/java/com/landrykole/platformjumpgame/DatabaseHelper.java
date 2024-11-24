@@ -1,5 +1,6 @@
 package com.landrykole.platformjumpgame;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -33,7 +34,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert("scores", null, values);
     }
 
-    public int getTopScores() {
+    @SuppressLint("Range")
+    public int getTopScore() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM scores ORDER BY score DESC LIMIT 1", null);
         if (cursor.moveToFirst()) {
